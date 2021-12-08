@@ -48,7 +48,7 @@ variable "vsphere_vm_memory" {
   default = 2048
 }
 
-variable "vsphere_resource_pool" {
+variable "vsphere_cluster" {
   type = string
-  description = "the name of the resourcepool" 
+  description = "the name of the cluster" 
 }

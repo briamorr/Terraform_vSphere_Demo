@@ -47,3 +47,8 @@ variable "vsphere_vm_memory" {
   description = "the amount of memory in MB"
   default = 2048
 }
+
+variable "vsphere_resource_pool" {
+  type = string
+  description = "the name of the resourcepool for examples: Cluster1/Resources" 
+}

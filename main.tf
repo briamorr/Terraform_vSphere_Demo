@@ -30,7 +30,6 @@ data "vsphere_network" "network" {
 resource "vsphere_virtual_machine" "vm" {
   name             = var.vsphere_vm_name
   datastore_id     = data.vsphere_datastore.datastore.id
-  folder           = var.vsphere_folder_name
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
   num_cpus = var.vsphere_vm_cpu

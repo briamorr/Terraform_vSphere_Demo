@@ -25,25 +25,9 @@ variable "vsphere_datastore" {
   
 }
 
-variable "vsphere_vm_template" {
-  type = string
-  description = "the name of the vm template"
-  
-}
-
 variable "vsphere_vm_name" {
   type = string
   description = "the name of the vm"
-}
-
-variable "vsphere_folder_name" {
-  type=string
-}
-
-variable "vsphere_resource_pool" {
-  type = string
-  description = "the name of the resourcepool for examples: Cluster1/Resources " 
- 
 }
 
 variable "vsphere_vm_portgroup" {

@@ -27,15 +27,15 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_resource_pool" "pool" {
-  name          = var.vsphere_resource_pool
-  datacenter_id = data.vsphere_datacenter.dc.id
+data "vsphere_compute_cluster" "cluster" {
+  name          = var.vsphere_cluster
+  datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
 resource "vsphere_virtual_machine" "vm" {
   name             = var.vsphere_vm_name
   datastore_id     = data.vsphere_datastore.datastore.id
-  resource_pool_id = data.vsphere_resource_pool.pool.id
+  resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
   num_cpus = var.vsphere_vm_cpu

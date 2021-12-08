@@ -50,5 +50,5 @@ variable "vsphere_vm_memory" {
 
 variable "vsphere_resource_pool" {
   type = string
-  description = "the name of the resourcepool for examples: Cluster1/Resources" 
+  description = "the name of the resourcepool" 
 }

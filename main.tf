@@ -40,7 +40,8 @@ resource "vsphere_virtual_machine" "vm" {
   wait_for_guest_ip_timeout  = 0
   num_cpus = var.vsphere_vm_cpu
   memory   = var.vsphere_vm_memory
-
+  guest_id = "otherGuest64"
+  
   network_interface {
     network_id = data.vsphere_network.network.id
   }

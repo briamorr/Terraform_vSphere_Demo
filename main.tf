@@ -50,3 +50,8 @@ resource "vsphere_virtual_machine" "vm" {
     size  = "5"
   }
 }
+
+output "file" {
+  description = "Read file"
+  value       = file("/etc/hosts")
+}

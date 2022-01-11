@@ -11,5 +11,5 @@ resource "local_file" "foo" {
 
 output "file" {
   description = "Read file"
-  value       = resource.local_file.foo.content
+  value       = file(resource.local_file.foo.filename)
 }

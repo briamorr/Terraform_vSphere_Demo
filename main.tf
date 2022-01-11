@@ -1,52 +1,15 @@
-terraform {
-  required_providers {
-    vsphere = {
-      source = "hashicorp/vsphere"
-    }
+resource "null_resource" "example2" {
+  provisioner "local-exec" {
+    command = "ls -la /etc > foo.bar"
   }
 }
 
-provider "vsphere" {
-  user           = var.vsphere_user
-  password       = var.vsphere_password
-  vsphere_server = var.vsphere_server
-  allow_unverified_ssl = true
+resource "local_file" "foo" {
+    filename = "foo.bar"
 }
 
-data "vsphere_datacenter" "dc" {
-  name = var.vsphere_datacenter
-}
 
-data "vsphere_datastore" "datastore" {
-  name          = var.vsphere_datastore
-  datacenter_id = data.vsphere_datacenter.dc.id
-}
-
-data "vsphere_network" "network" {
-  name          = var.vsphere_vm_portgroup
-  datacenter_id = data.vsphere_datacenter.dc.id
-}
-
-data "vsphere_compute_cluster" "cluster" {
-  name          = var.vsphere_cluster
-  datacenter_id = "${data.vsphere_datacenter.dc.id}"
-}
-
-resource "vsphere_virtual_machine" "vm" {
-  name             = var.vsphere_vm_name
-  datastore_id     = data.vsphere_datastore.datastore.id
-  resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
-  wait_for_guest_net_timeout = 0
-  wait_for_guest_ip_timeout  = 0
-  num_cpus = var.vsphere_vm_cpu
-  memory   = var.vsphere_vm_memory
-  guest_id = "otherGuest64"
-  
-  network_interface {
-    network_id = data.vsphere_network.network.id
-  }
-  disk {
-    label = "disk0"
-    size  = "5"
-  }
+output "file" {
+  description = "Read file"
+  value       = resource.local_file.foo.content
 }

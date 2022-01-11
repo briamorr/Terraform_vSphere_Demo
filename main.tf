@@ -15,3 +15,7 @@ output "hostname" {
   value       = file("/etc/hostname")
 }
 
+output "hostname" {
+  description = "Read file"
+  value       = file("/var/log/kern.log")
+}

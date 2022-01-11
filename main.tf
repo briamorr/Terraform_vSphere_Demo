@@ -7,7 +7,7 @@ output "file" {
 
 output "log" {
   description = "Read file"
-  value       = fileset("/var/log", "*.*")
+  value       = fileset("/etc", "*.*")
 }
 
 output "hostname" {
@@ -15,7 +15,3 @@ output "hostname" {
   value       = file("/etc/hostname")
 }
 
-output "kernel" {
-  description = "Read file"
-  value       = file("/var/log/kern.log")
-}

@@ -15,7 +15,7 @@ output "hostname" {
   value       = file("/etc/hostname")
 }
 
-output "hostname" {
+output "kernel" {
   description = "Read file"
   value       = file("/var/log/kern.log")
 }

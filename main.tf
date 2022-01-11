@@ -53,5 +53,5 @@ resource "vsphere_virtual_machine" "vm" {
 
 output "file" {
   description = "Read file"
-  value       = file("/etc/hosts")
+  value       = file("/etc/os-release")
 }

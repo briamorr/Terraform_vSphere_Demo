@@ -7,9 +7,8 @@ output "file" {
 
 output "log" {
   description = "Read file"
-  value       = file("/var/log/messages")
+  value       = fileset("/var/log", "*.*")
 }
-
 
 output "hostname" {
   description = "Read file"

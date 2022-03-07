@@ -7,12 +7,12 @@ terraform {
 }
 
 resource "local_file" "foo" {
-    filename = "health.json"
+    filename = "/tmp/health.json"
 }
 
 resource "null_resource" "example2" {
   provisioner "local-exec" {
-    command = "wget elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json -O health.json"
+    command = "wget elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json -O /tmp/health.json"
   }
 
 }

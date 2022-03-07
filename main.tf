@@ -6,13 +6,11 @@ terraform {
   }
 }
 
-resource "null_resource" "example2" {
-  provisioner "local-exec" {
-    command = "wget elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json -O /tmp/health.json"
-  }
-
+module "files" {
+  source  = "matti/resource/shell"
+  command = "wget -qO- elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json"
 }
 
-output "instance_ip_addr" {
-  value = file("/tmp/health.json")
+output "my_files" {
+  value = module.files.stdout
 }

@@ -18,6 +18,5 @@ resource "null_resource" "example2" {
 }
 
 output "instance_ip_addr" {
-  value = resource.local_file.foo
-  sensitive = false
+  value = nonsensitive(resource.local_file.foo)
 }

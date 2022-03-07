@@ -17,5 +17,5 @@ data "local_file" "foo" {
 }
 
 output "instance_ip_addr" {
-  value = foo.content
+  value = local_file.foo.content
 }

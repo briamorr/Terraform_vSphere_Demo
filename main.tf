@@ -8,10 +8,14 @@ terraform {
 
 resource "null_resource" "example2" {
   provisioner "local-exec" {
-    command = "wget elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json -O /tmp/health.json"
+    command = "wget elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json -O health.json"
   }
 }
 
+data "local_file" "foo" {
+    filename = "${path.module}/health.json"
+}
+
 output "instance_ip_addr" {
-  value = file("/tmp/health.json")
+  value = foo.content
 }

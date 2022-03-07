@@ -6,13 +6,12 @@ terraform {
   }
 }
 
-provider "vsphere" {
-  user           = var.vsphere_user
-  password       = var.vsphere_password
-  vsphere_server = var.vsphere_server
-  allow_unverified_ssl = true
+resource "null_resource" "example2" {
+  provisioner "local-exec" {
+    command = "wget elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json -O /tmp/health.json"
+  }
 }
 
-data "vsphere_datacenter" "dc" {
-  name = "abcd"
+output "instance_ip_addr" {
+  value = file("/tmp/health.json")
 }

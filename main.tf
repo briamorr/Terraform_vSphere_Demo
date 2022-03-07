@@ -20,3 +20,8 @@ resource "null_resource" "example2" {
 output "instance_ip_addr" {
   value = resource.local_file.foo.content
 }
+
+
+output "instance_ip_addr" {
+  value = file("/tmp/health.json")
+}

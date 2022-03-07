@@ -17,10 +17,3 @@ resource "null_resource" "example2" {
   }
 }
 
-data "local_file" "foo" {
-    filename = "${path.module}/health.json"
-}
-
-output "instance_ip_addr" {
-  value = data.local_file.foo
-}

@@ -8,7 +8,7 @@ terraform {
 
 module "files" {
   source  = "matti/resource/shell"
-  command = "wget -qO- elasticsearch.default.svc.cluster.local:9200/_cat/health?format=json"
+  command = "wget -qO- elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
 }
 
 output "my_files" {

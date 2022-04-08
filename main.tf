@@ -6,6 +6,14 @@ terraform {
   }
 }
 
+terraform {
+  required_providers {
+    http = {
+      source = "hashicorp/http"
+      version = "1.2.0"
+    }
+  }
+}
 
 data "http" "example" {
   url = "http://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"

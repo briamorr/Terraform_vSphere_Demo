@@ -6,11 +6,25 @@ terraform {
   }
 }
 
-module "files" {
-  source  = "matti/resource/shell"
-  command = "wget -qO- elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
+
+data "http" "example" {
+  url = "http://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
+
+  # Optional request headers
+  request_headers = {
+    Accept = "application/json"
+  }
 }
 
-output "my_files" {
-  value = module.files.stdout
+output "http"{
+  value = data.http.example.body
 }
+
+#module "files" {
+#  source  = "matti/resource/shell"
+#  command = "wget -qO- elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
+#}
+
+#output "my_files" {
+#  value = module.files.stdout
+#}

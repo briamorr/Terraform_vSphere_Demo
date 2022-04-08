@@ -14,7 +14,7 @@ data "httpclient_request" "req" {
 }
 
 output "response_body" {
-  value = jsondecode(data.httpclient_request.req.response_body)
+  value = data.httpclient_request.req.response_body
 }
 
 

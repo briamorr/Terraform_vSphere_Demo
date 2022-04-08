@@ -1,13 +1,5 @@
 terraform {
   required_providers {
-    vsphere = {
-      source = "hashicorp/vsphere"
-    }
-  }
-}
-
-terraform {
-  required_providers {
     http = {
       source = "hashicorp/http"
       version = "1.2.0"

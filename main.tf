@@ -1,24 +1,24 @@
 terraform {
   required_providers {
-    http = {
-      source = "hashicorp/http"
-      version = "1.2.0"
+    http-client = {
+      source = "dmachard/http-client"
+      version = "0.0.3"
     }
   }
 }
 
-data "http" "example" {
-  url = "http://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
 
-  # Optional request headers
+data "httpclient_request" "req" {
+  url = "http://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
   request_headers = {
-    Accept = "application/json"
+    Content-Type: "application/json",
   }
 }
 
-output "http"{
-  value = data.http.example.body
+output "response_body" {
+  value = jsondecode(data.httpclient_request.req.response_body)
 }
+
 
 #module "files" {
 #  source  = "matti/resource/shell"

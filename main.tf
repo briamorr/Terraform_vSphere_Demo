@@ -1,12 +1,11 @@
 terraform {
   required_providers {
-    http-client = {
-      source = "dmachard/http-client"
-      version = "0.0.3"
+    httpclient = {
+      version = "1.0.0"
+      source  = "rosineygp/http-client"
     }
   }
 }
-
 
 data "httpclient_request" "req" {
   url = "http://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"

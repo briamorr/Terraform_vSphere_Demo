@@ -8,7 +8,7 @@ terraform {
 
 
 data "http" "example" {
-  url = "https://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
+  url = "http://elasticsearch.default.svc.cluster.local:9200/_cat/indices?v"
 
   # Optional request headers
   request_headers = {
